@@ -1,5 +1,7 @@
 <!-- ![screen-gif](./ezgif.com-gif-maker.gif)
 
+I have deployed this dashboard to the web using Amazon ECR/ECS but it isn't "always on" because of the cost. Contact me at dsulliv400@gmail.com if you would like to try it out for yourself.
+
 ![screen-gif](./ezgif.com-gif-maker1.gif) -->
 
 <img src="./gifs/ezgif.com-gif-maker.gif" alt="My Project GIF" width="900" height="600">
