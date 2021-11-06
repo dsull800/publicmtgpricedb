@@ -4,7 +4,7 @@
 
 ![screen-gif](./ezgif.com-gif-maker1.gif) -->
 
-Check out the app at www.mtgstocksclone.com! This is still a work in progress, I need to 
+Check out the app at https://mtgstocksclone.com! This is still a work in progress, I need to 
 figure out how to incorporate new data sources and improve the UI.
 
 <img src="./gifs/ezgif.com-gif-maker.gif" alt="My Project GIF" width="900" height="600">
