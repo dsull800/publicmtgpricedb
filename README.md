@@ -1,4 +1,4 @@
-mtgstocksclone.com
+[mtgstocksclone.com](https://www.mtgstocksclone.com/)
 
 ./docker/ECRupload.sh to build and upload docker image to ECR
 
