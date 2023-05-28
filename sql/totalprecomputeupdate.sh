@@ -1,0 +1,1 @@
+psql -h database-1.cex85iiae92h.us-west-2.rds.amazonaws.com -d mtgdata -U postgres -f sql/totalprecompute.sql

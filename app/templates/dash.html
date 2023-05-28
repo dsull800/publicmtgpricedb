@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+<div align="left">
+    {% block meta %}
+    {{ super() }}
+    {{ metas }}
+    {% endblock %}
+    {% block styles %}
+    {{ super() }}
+    {{ css }}
+    {% endblock %}
+    {% block content %}
+    {{ super() }}
+    {{ app_entry }}
+    {{ dash_config }}
+    {{ scripts }}
+    <!--    {{ css }}-->
+    <!--    {{ metas }}-->
+    {{ renderer }}
+    {% endblock %}
+</div>

@@ -1,0 +1,173 @@
+{% extends 'styles_messages.html' %}
+{{ super() }}
+
+
+{% block content %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+.body {margin: 0px;}
+
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 17px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: fixed;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.topnav a:hover, .dropdown:hover .dropbtn {
+  background-color: #555;
+  color: white;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+<link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+<link rel="manifest" href="/static/site.webmanifest">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    </style>
+</head>
+<div class="topnav" id="myTopnav">
+    <a href="{{ url_for('main.index') }}">Home</a>
+    {% if current_user.is_anonymous %}
+    {% else %}
+    {% if current_user.has_roles('subscribed') %}
+    <a href="/premium/price_history/">Price History</a>
+    <a href="/premium/winners_losers/">Winners/Losers</a>
+    {% else %}
+    <!--    <a href="{{ url_for('main.subscribe') }}">Subscribe</a>-->
+    {% endif %}
+    <!--    <a href="{{ url_for('user.logout') }}">Sign Out</a>-->
+    {% endif %}
+    <div class="dropdown">
+        <button class="dropbtn" popovertarget="dropdown-content">User
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div id="dropdown-content" class="dropdown-content" popover>
+            {% if current_user.is_anonymous %}
+            <a href="{{ url_for('user.login') }}">Sign In</a>
+            <a href="/google_login/">Google Sign In</a>
+            {% else %}
+            {% if current_user.has_roles('subscribed') %}
+            <a href="{{ env['stripe_customer_management_url'] }}" target="_blank">
+                Manage Subscription</a>
+            {% else %}
+            <a href="{{ url_for('main.subscribe') }}">
+                Subscribe</a>
+            {% endif %}
+            <a href="{{ url_for('user.change_password') }}">
+                Change password</a>
+            <a href="{{ url_for('user.logout') }}">
+                Sign out</a>
+            {% endif %}
+        </div>
+    </div>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+};
+
+
+</script>
+</html>
+{% endblock %}
