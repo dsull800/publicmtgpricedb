@@ -41,7 +41,7 @@ docopt==0.6.2
 docutils==0.16
 EditorConfig==0.12.3
 email-validator==2.0.0.post2
-Flask==2.2.2
+Flask==2.2.5
 Flask-Caching==2.0.2
 Flask-Dance==6.2.0
 Flask-Login==0.6.2
