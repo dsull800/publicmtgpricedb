@@ -1,0 +1,23 @@
+{% extends 'styles_messages.html' %}
+{% block content %}
+{{ super() }}
+{% if current_user.is_anonymous %}
+<a href="{{ url_for('user.login') }}">Login</a>
+<a href="/google_login/">Google Login</a>
+{% else  %}
+{% if not current_user.has_roles('subscribed') %}
+<div>
+    You are unsubscribed, please subscribe or manage an expired subscription:
+</div>
+<p><a href="{{ url_for('main.subscribe') }}">Subscribe</a></p>
+{% else %}
+<div>
+    You are already subscribed, to manage your subscription click the link below:
+</div>
+{% endif %}
+<p><a href="{{ env['stripe_customer_management_url'] }}">
+    {%trans%}Manage Subscription{%endtrans%}</a></p>
+{% endif %}
+<p><a href="{{ url_for('main.index') }}">
+    {%trans%}Home Page{%endtrans%}</a></p>
+{% endblock %}

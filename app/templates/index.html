@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+<style>
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: cyan;
+  color: white;
+  text-align: center;
+}
+
+.footer a {
+    margin: 5px;
+}
+
+</style>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+
+<h1>Welcome to MTGStocksClone.com!</h1>
+{% if current_user.is_anonymous %}
+<h2>Hello, stranger! Please sign in or register to continue.</h2>
+{% else  %}
+<h2>Hi, {{ current_user.email }}!
+    {% if not current_user.has_roles('subscribed') %}
+    Please subscribe in order to access premium content.
+    {% else %}
+    {% endif %}
+</h2>
+{% endif %}
+<h4>MTGStocksClone.com is dedicated to tracking and forecasting prices of
+    <a href="https://magic.wizards.com/en/formats/pioneer" target="_blank">Pioneer</a> legal singles. We provide the
+    latest market information in the form of "Price History",
+    which displays historical sold listings of select Pioneer
+    singles, as well as "Winners/Losers" which displays singles ordered by the direction and magnitude of their recent
+    price movements.</h4>
+
+
+<div style="display: flex;">
+    <div class="gif-container" alt="GIF">
+        <img class="gif-image" src="{{ url_for('static', filename='prh.png') }}" style="max-width: 100%; height: auto;">
+    </div>
+    <div class="gif-container" alt="GIF">
+        <img class="gif-image" src="{{ url_for('static', filename='worl.png') }}"
+             style="max-width: 100%; height: auto;">
+    </div>
+</div>
+<footer class="footer">
+    <a href="mailto:{{ env['USER_EMAIL_SENDER_EMAIL'] }}">Contact Us</a>
+    <a href="https://github.com/dsull800" target="_blank">My Github</a>
+</footer>
+{% endblock %}

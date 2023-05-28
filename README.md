@@ -1,26 +1,22 @@
-<!-- ![screen-gif](./ezgif.com-gif-maker.gif)
+mtgstocksclone.com
 
+./docker/ECRupload.sh to build and upload docker image to ECR
 
+./docker/ECStaskstart.sh to start app using latest image on ECR
 
-![screen-gif](./ezgif.com-gif-maker1.gif) -->
+call python app scripts using python app/*.py --args or scraping scripts scraping/*.py
 
-Check out the app at https://mtgstocksclone.com! This is still a work in progress, I need to 
-figure out how to incorporate new data sources and improve the UI.
+flask --app app/dashboard.py run --debugger
+to run locally
 
-<img src="./gifs/ezgif.com-gif-maker.gif" alt="My Project GIF" width="900" height="600">
+flask db init
+flask db migrate -m 'init'
+flask db upgrade
 
-<img src="./gifs/ezgif.com-gif-maker1.gif" alt="My Project GIF" width="900" height="600">
+stripe listen --forward-to 127.0.0.1:5000/stripe_webhook/
 
-This dash app displays historical price information of magic:the gathering cards,
-as well as 7 day forecasts of prices generated using Amazon Sagemaker's DeepAR
-algorithm. You can also look at the the historical information of the predictors
-used in the algorithm.
+waitress-serve --listen 127.0.0.1:5000 --call 'dashapp:run_app'
 
-<!-- ![screen-gif](./ezgif.com-gif-maker2.gif) -->
+docker run -v $HOME/.aws:/.aws --rm -it --entrypoint bash <IMAGE>
 
-There is another page which is used to display cards which have recently increased
-or decreased in value.
-
-<img src="./gifs/ezgif.com-gif-maker2.gif" alt="My Project GIF" width="900" height="600">
-
-<img src="./gifs/ezgif.com-gif-maker3.gif" alt="My Project GIF" width="900" height="600">
+docker run -v $HOME/.aws:/.aws <IMAGE>
